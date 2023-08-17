@@ -1,0 +1,2 @@
+PennyLane-Lightning @ git+https://github.com/PennyLaneAI/pennylane-lightning@support_matrix_adjdiff
+PennyLane==0.31.0
