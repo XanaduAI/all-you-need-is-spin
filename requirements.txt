@@ -1,2 +1,2 @@
-PennyLane-Lightning @ git+https://github.com/PennyLaneAI/pennylane-lightning@support_matrix_adjdiff
+PennyLane-Lightning @ git+https://github.com/PennyLaneAI/pennylane-lightning@merge_mat_sparse_adj
 PennyLane==0.31.0
