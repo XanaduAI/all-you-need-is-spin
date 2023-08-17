@@ -13,7 +13,7 @@ Similarly, one can simulate the model on the Kagome lattice with $n=18$ qubits.
 ```python
 python3 ./python_src/kagome_lattice.py --num-qubits 20 --gate 3 --num-blocks 5 --no-share-param
 ```
-The final parameter, `--no-share-param, ` controls whether we want to share parameters among gates. We have used `--no-share-param` for all data presented in the paper.
+The final parameter, `--no-share-param`, controls whether we want to share parameters among gates. We have used `--no-share-param` for all data presented in the paper.
 
 
 ## Warnings
