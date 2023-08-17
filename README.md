@@ -4,7 +4,7 @@
 <img src="https://github.com/XanaduAI/all-you-need-is-spin/blob/main/static/kagome18.png?raw=true" style="width:30em;">
 
 ## Usage
-In the `python_src` directory, there are two scripts. These scripts can simulate the variational algorithm with SU(2) equivariant gates. For example, the following will simulate the algorithm with two-qubit vertex gates (given by `--gate` argument) for 20 qubits (`--num_qubits`), J2=0.44 (`--j2`), and four layers of gates (`--gate`; $p$ in the paper). The default learning rate `5e-3` is used.
+In the `python_src` directory, there are two scripts. These scripts can simulate the variational algorithm with SU(2) equivariant gates. For example, the following will simulate the algorithm with two-qubit vertex gates (given by `--gate` argument) for 20 qubits (`--num_qubits`), $J_2=0.44$ (`--j2`), and four layers of gates (`--gate`; $p$ in the paper). The default learning rate `5e-3` is used.
 ```python
 python3 ./python_src/heisenberg_1d.py --num_qubits 20 --gate 2 --num_layers 4 --j2 0.44
 ```
