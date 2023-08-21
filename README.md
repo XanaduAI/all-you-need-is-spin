@@ -19,7 +19,7 @@ The final parameter, `--no-share-param`, controls whether we want to share param
 
 
 ## Warnings
-Currently, the feature we used for the simulations is not fully integrated with the latest release of PennLane-Lightning. Thus it is required to compile PennyLane-Lightning from source. The recommended way is using a Python virtual environment populated with the packages in `requirements.txt`. After cloning the repository, you may run 
+Currently, the feature we used for the simulations is not fully integrated with the latest release of PennLane-Lightning. It is instead implemented in [merge_mat_sparse_adj](https://github.com/PennyLaneAI/pennylane-lightning/tree/merge_mat_sparse_adj) branch of PennyLane-Lightning. Thus users need to compile this branch from source. The recommended way is using a Python virtual environment populated with the packages in `requirements.txt`. After cloning the repository, you may run 
 ```bash
 $ python3 -m venv env
 $ source ./env/bin/activate
