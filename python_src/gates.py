@@ -10,8 +10,8 @@ class NumberPreserving_2(qml.operation.Operation):
                 qml.RZ(-phi - np.pi, wires[1]),
                 qml.RY(-theta - np.pi/2, wires[1]),
                 qml.CNOT(wires),
-                qml.RY(theta + np.pi/2, wires[0]),
-                qml.RZ(phi + np.pi, wires[0]),
+                qml.RY(theta + np.pi/2, wires[1]),
+                qml.RZ(phi + np.pi, wires[1]),
                 qml.CNOT(wires[::-1])]
 
 class Spin_2(qml.operation.Operation):
