@@ -5,7 +5,7 @@ import numpy as np
 import json
 import math
 import argparse
-from gates import Spin_2, Spin_3, create_singlet
+from gates import NumberPreserving_2, Spin_2, Spin_3, create_singlet
 
 def create_Heisenberg(N, J1, J2):
     H = sum([J1 * qml.PauliZ(i) @ qml.PauliZ((i + 1) % N) for i in range(N)])
@@ -21,6 +21,28 @@ def create_Heisenberg(N, J1, J2):
 def prepare_init_state(N):
     for i in range(0, N, 2):
         create_singlet(i, i+1)
+
+def create_u1_circuit(N, num_blocks, H):
+    # total params = 2Nl
+    def circuit_2qubits_u1(params):
+        prepare_init_state(N)
+        k = 0
+        for l in range(num_blocks):
+            for i in range(0, N, 2):
+                NumberPreserving_2(params[k], params[k+1], wires=[i, (i + 1) % N])
+                k += 2
+
+            for i in range(1, N, 2):
+                NumberPreserving_2(params[k], params[k+1], wires=[i, (i + 1) % N])
+                k += 2
+
+            for i in range(0, N):
+                NumberPreserving_2(params[k], params[k+1], wires=[i, (i + 2) % N])
+                k += 2
+
+        return qml.expval(H)
+
+    return circuit_2qubits_u1
 
 def create_u2_circuit(N, num_blocks, H):
     # total params = 2Nl
@@ -88,7 +110,11 @@ if __name__ == "__main__":
     epochs = 2000
     opt = qml.AdamOptimizer(stepsize=adam_step)
 
-    if args["gate"] == 2:
+    if args["gate"] == 1:
+        circuit = qml.QNode(create_u1_circuit(N, num_blocks, ham_sparse), dev, diff_method="adjoint")
+        init = init_scale*math.pi/(4*N*num_blocks)
+        params = init * pnp.random.rand(4 * N * num_blocks)
+    elif args["gate"] == 2:
         circuit = qml.QNode(create_u2_circuit(N, num_blocks, ham_sparse), dev, diff_method="adjoint")
         init = init_scale*math.pi/(2*N*num_blocks)
         params = init * pnp.random.rand(2 * N * num_blocks)
