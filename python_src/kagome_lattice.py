@@ -36,9 +36,9 @@ def create_Kagome18():
         (7, 17), (7, 8), (8, 9), (9, 10), (10, 11), (11, 17), #6
         (8, 12), (9, 12), (10, 13), (11, 13), #4
         (13, 14), (13, 15), #2
-        (4, 14), (14, 15), (1, 15), #2
+        (4, 14), (14, 15), (1, 15), #3
         (15, 16), (1, 16), #2
-        (16, 17) #1 total 35
+        (16, 17) #1 total 36
     ]
     J1 = 1.0
     H = sum([J1 * qml.PauliZ(i) @ qml.PauliZ(j) for i, j in edges])
@@ -128,6 +128,8 @@ if __name__ == "__main__":
         circuit = qml.QNode(create_u3_circuit(N, num_blocks, ham_sparse), dev, diff_method="adjoint")
         init = init_scale*math.pi/(48*num_blocks)
         params = init * pnp.random.rand(48*num_blocks)
+
+    print(np.linalg.norm(qml.grad(circuit)(params)))
 
     for epoch in range(epochs):
         params, cost = opt.step_and_cost(circuit, params)
